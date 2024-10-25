@@ -35,12 +35,25 @@ public class Exercise19 {
 
     public static String getTridimensionalString(int[][][] intArrayTri) {
         int[][] flatMatrix = flatTridimensionalArray(intArrayTri);
+
         return getTridimensionalString(intArrayTri, flatMatrix);
     }
 
     //TODO
     public static int[][] flatTridimensionalArray(int[][][] intArrayTri) {
-    int[][] bidimensional= new int[1][1];
+        int[][] bidimensional = new int[intArrayTri[0].length][intArrayTri[0][0].length];
+        //FILAS - COLUMNAS
+          // intArrayTri[0].length--> Miro la longitud(Nº filas) En la Depth 0
+        for(int j=0;j< intArrayTri[0].length;j++){//recorriendo todas las posiciones de las filas(j)
+           for(int k=0;k< intArrayTri[0][j].length;k++){
+               for(int i=0; i< intArrayTri.length;i++){
+
+                   bidimensional[j][k] = bidimensional[j][k] + intArrayTri[i][j][k];
+               }
+           }
+        }
+
+
        return bidimensional;
     }
 
@@ -49,7 +62,7 @@ public class Exercise19 {
 
     public static String getBidimensionalString(int[][] intArrayBi) {
         String value="";
-        for (int i=0; i<intArrayBi.length;i++){
+        /*for (int i=0; i<intArrayBi.length;i++){
             for(int j= 0; j<intArrayBi.length;j++){
                 if((i!=0 && j!=2) || (i!=1 && j!=2) || (i!=2 && j!=2) ){
                 value=value+intArrayBi[i][j] + " ";
@@ -59,7 +72,14 @@ public class Exercise19 {
              value=value+intArrayBi[i][j] + "\n";
                 }
             }
+        }*/
+        for(int i=0;i< intArrayBi.length;i++){
+            for (int j=0; j< intArrayBi[i].length;j++){
+                value= value + intArrayBi[i][j]+ " ";
+            }
+            value += "\n";
         }
+
         return value;
     }
 
@@ -76,7 +96,6 @@ public class Exercise19 {
             }else {
                 value=value+uniArray[i]+"";
             }
-
         }
         return value;
     }
@@ -94,11 +113,11 @@ public class Exercise19 {
         }
 
         //IMPRIMIR ARRAYS EN HORIZONTAL sout.print
-        for (int i = 0; i < firstIntArray.length;i++){
+       /* for (int i = 0; i < firstIntArray.length;i++){
 
             System.out.print(firstIntArray[i]+" ");
         }
-        System.out.println();
+        System.out.println();*/
         return firstIntArray;
     }
 
@@ -118,29 +137,31 @@ public class Exercise19 {
             }
         }
         //MOSTRAR LOS VALORES DEL ARRAY
-        for (int i=0; i < rows;i++) {
+        /*for (int i=0; i < rows;i++) {
             for (int j=0; j<columns;j++){
                 System.out.print(ejemplo[i][j]+" ");
             }
             System.out.println();
         }
-        System.out.println("\n");
-    return ejemplo;
+        System.out.println("\n");*/
+        return ejemplo;
     }
 
     // TODO
-    public static int[][][] createAndPopulateTridimensionalArray(int depth, int rows, int columns) {
+    public static int[][][] createAndPopulateTridimensionalArray
+    (int depth, int rows, int columns) {
         int [][][] ejemplo2 = new int [depth][rows][columns];
         int value=0;
         for(int i=0;i<depth;i++){
             for (int j=0;j<rows;j++){
-                for(int n=0;n<columns;n++){
+                for(int k=0;k<columns;k++){
                     value++;
-                    ejemplo2[i][j][n]=value;
+                    ejemplo2[i][j][k]=value;
                 }
             }
         }
-        for(int i=0;i<depth;i++) {
+         //IMPRIMIR LOS VALORES
+        /*for(int i=0;i<depth;i++) {
             for (int j = 0; j < rows; j++) {
                 for (int n = 0; n < columns; n++) {
                     System.out.print(ejemplo2[i][j][n]+"  ");
@@ -149,23 +170,35 @@ public class Exercise19 {
             }
             System.out.println();
         }
-        System.out.println("\n");
+        System.out.println("\n");*/
         return ejemplo2;
    }
 
 
     public static void main(String[] args) {
+        System.out.println("Crear e imprimir el array unidimensional: ");
+        // Crear array
+       int[] uniArray = createAndPopulateUnidimensionalArray(2);
+        // Mistrarlo por pantalla
+        System.out.println(getUnidimensionalString(uniArray));
+        System.out.println("=================================");
 
-       //int[] uniArray = createAndPopulateUnidimensionalArray(5);
-        //System.out.println("=================================");
-        int[][] intArrayBi = createAndPopulateBidimensionalArray(3, 3);
-        System.out.println("===================================");
-      //  int[][][] marceloArrayTri = createAndPopulateTridimensionalArray(3,3,3);
+        System.out.println("Crear e imprimir el array bidimensional: ");
 
-       //  System.out.println(getUnidimensionalString(uniArray));
+        int[][] intArrayBi = createAndPopulateBidimensionalArray(3, 4);
         System.out.println(getBidimensionalString(intArrayBi));
-           /*System.out.println("===================");
-        int[][] intArrayBi = createAndPopulateBidimensionalArray(5, 5);
+
+       System.out.println("=================================");
+       /* //matriz 2x2
+        int[][] intArrayBi = createAndPopulateBidimensionalArray(2, 2);
+        System.out.println("===================================");
+
+        */
+        int[][][] marceloArrayTri = createAndPopulateTridimensionalArray(3,3,3);
+        System.out.println(getTridimensionalString(marceloArrayTri));
+
+           System.out.println("===================");
+        /*int[][] intArrayBi = createAndPopulateBidimensionalArray(5, 5);
         System.out.println(getBidimensionalString(intArrayBi));
         System.out.println("===================");
         int[][][] intArrayTri = createAndPopulateTridimensionalArray(3, 3, 3);
