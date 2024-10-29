@@ -75,9 +75,18 @@ public class Exercise19 {
         }*/
         for(int i=0;i< intArrayBi.length;i++){
             for (int j=0; j< intArrayBi[i].length;j++){
-                value= value + intArrayBi[i][j]+ " ";
+                //if((i< intArrayBi.length) && (j== (intArrayBi.length[0]-1))){
+                if( (i==0 && j==2) || (i==1&&j==2) || (i==2&&j==2)){
+                    value= value + intArrayBi[i][j];
+                }else {
+
+                    value= value + intArrayBi[i][j]+ " ";}
             }
-            value += "\n";
+            if(i!=2) {
+                value += "\n";
+            }else{
+                value = value + "";
+            }
         }
 
         return value;
@@ -185,7 +194,7 @@ public class Exercise19 {
 
         System.out.println("Crear e imprimir el array bidimensional: ");
 
-        int[][] intArrayBi = createAndPopulateBidimensionalArray(3, 4);
+        int[][] intArrayBi = createAndPopulateBidimensionalArray(3, 3);
         System.out.println(getBidimensionalString(intArrayBi));
 
        System.out.println("=================================");
